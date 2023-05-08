@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="basic">
+		<field
+			name="debug_mode"
+			type="radio"
+			label="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_DEBUG_MODE_LABEL"
+			description="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_DEBUG_MODE_DESC"
+			layout="joomla.form.field.radio.switcher"
+			default="0"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="new_label_id"
+			type="jshoppingproductlabel"
+			addfieldprefix="WishBox\Field"
+			label="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NEW_LABEL_ID_LABEL"
+			description="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NEW_LABEL_ID_DESC"
+			default="-1"
+		/>
+		<field
+			name="new_label_day_count"
+			type="number"
+			addfieldprefix="WishBox\Field"
+			label="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NEW_LABEL_DAY_COUNT_LABEL"
+			description="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NEW_LABEL_DAY_COUNT_DESC"
+			default="10"
+		/>
+		<field
+			name="available_label_id"
+			type="jshoppingproductlabel"
+			addfieldprefix="WishBox\Field"
+			label="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_AVAILABLE_LABEL_ID_LABEL"
+			description="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_AVAILABLE_LABEL_ID_DESC"
+			default="-1"
+		/>
+		<field
+			name="not_available_label_id"
+			type="jshoppingproductlabel"
+			addfieldprefix="WishBox\Field"
+			label="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NOT_AVAILABLE_LABEL_ID_LABEL"
+			description="PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_FIELD_NOT_AVAILABLE_LABEL_ID_DESC"
+			default="-1"
+		/>
+	</fieldset>
+</form>
