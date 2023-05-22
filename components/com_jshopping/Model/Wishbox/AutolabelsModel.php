@@ -22,15 +22,15 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 	/**
 	 *
 	 */
-	public function update(): bool
+	public function update(array $productIds = []): bool
 	{
-		if (!$this->updateNewLabels()) {
+		if (!$this->updateNewLabels($productIds)) {
 			throw new Exception('updateNewLabels return false', 500);
 		}
-		if (!$this->updateAvailableLabels()) {
+		if (!$this->updateAvailableLabels($productIds)) {
 			throw new Exception('updateAvailableLabels return false', 500);
 		}
-		if (!$this->updateNotAvailableLabels()) {
+		if (!$this->updateNotAvailableLabels($productIds)) {
 			throw new Exception('updateNotAvailableLabels return false', 500);
 		}
 		return true;
@@ -39,7 +39,7 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 	/**
 	 *
 	 */
-	public function updateNewLabels(): bool
+	public function updateNewLabels(array $productIds = []): bool
 	{
 		$newLabelId = $this->addon->params->get('new_label_id', 0);
 		$newLabelDayCount = $this->addon->params->get('new_label_day_count', 0);
@@ -48,6 +48,9 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 			->set('label_id='.$newLabelId)
 			->where('product_quantity > 0')
 			->where('product_date_added > NOW() - INTERVAL '.$newLabelDayCount.' DAY');
+		if (count($productIds)) {
+			$query->where('product_id IN('.implode(', ', $productIds).')');
+		}
 		$this->db->setQuery($query);
 		$this->db->execute();
 		return true;
@@ -56,7 +59,7 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 	/**
 	 *
 	 */
-	public function updateAvailableLabels(): bool
+	public function updateAvailableLabels(array $productIds = []): bool
 	{
 		$availableLabelId = $this->addon->params->get('available_label_id', 0);
 		$newLabelDayCount = $this->addon->params->get('new_label_day_count', 0);
@@ -65,6 +68,9 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 			->set('label_id='.$availableLabelId)
 			->where('product_quantity > 0')
 			->where('product_date_added < NOW() - INTERVAL '.$newLabelDayCount.' DAY');
+		if (count($productIds)) {
+			$query->where('product_id IN('.implode(', ', $productIds).')');
+		}
 		$this->db->setQuery($query);
 		$this->db->execute();
 		return true;
@@ -73,13 +79,16 @@ class AutolabelsModel extends \WishBox\JShopping\Model\Base
 	/**
 	 *
 	 */
-	public function updateNotAvailableLabels(): bool
+	public function updateNotAvailableLabels(array $productIds = []): bool
 	{
 		$notAvailableLabelId = $this->addon->params->get('not_available_label_id', 0);
 		$query = $this->db->getQuery(true)
 			->update('#__jshopping_products')
 			->set('label_id='.$notAvailableLabelId)
-			->where('product_quantity < 0');
+			->where('product_quantity <= 0');
+		if (count($productIds)) {
+			$query->where('product_id IN('.implode(', ', $productIds).')');
+		}
 		$this->db->setQuery($query);
 		$this->db->execute();
 		return true;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="plugin" group="jshoppingadmin" method="upgrade">
+	<name>plg_jshoppingadmin_wishboxautolabels</name>
+	<author>Nekrasov Vitaliy</author>
+	<creationDate>May 2023</creationDate>
+	<authorEmail>nekrasov_vitaliy@list.ru</authorEmail>
+	<version>1.0.0</version>
+	<description>PLG_JSHOPPINGADMIN_WISHBOXAUTOLABELS_XML_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\Jshoppingadmin\Wishboxautolabels</namespace>
+	<files>
+		<folder plugin="wishboxautolabels">services</folder>
+		<folder>src</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/plg_jshoppingadmin_wishboxautolabels.ini</language>
+		<language tag="en-GB">language/en-GB/plg_jshoppingadmin_wishboxautolabels.sys.ini</language>
+		<language tag="ru-RU">language/ru-RU/plg_jshoppingadmin_wishboxautolabels.ini</language>
+		<language tag="ru-RU">language/ru-RU/plg_jshoppingadmin_wishboxautolabels.sys.ini</language>
+	</languages>
+</extension>
